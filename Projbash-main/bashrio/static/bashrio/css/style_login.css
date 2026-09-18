@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #0f0c29; 
+    background:linear-gradient(60deg, rgb(0, 2, 145),
+                                rgba(0, 11, 112, 0.856),
+                                rgba(10, 0, 49, 0.932));
+    background-attachment: fixed; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 50px; 
+}
+
+.header-logo {
+    margin-bottom: 20px;
+    display: inline-block;
+    position: absolute;
+    top: 40px;
+    font-size: 80px;
+    font-weight: 850;
+    letter-spacing: 0.5px;
+    user-select: none;
+}
+
+.login-card {
+    background-color: rgba(10, 10, 25, 0.65); 
+    backdrop-filter: blur(10px); 
+    padding: 40px;
+    margin-top: 200px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.login-card h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.07); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #6d4aff; /* Roxo ao clicar */
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.input-group input::placeholder {
+    color: #666;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #5b42f3; 
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #4a32d4;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin: 20px 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.divider span {
+    padding: 0 10px;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    background-color: #5b42f3;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+}
+
+.forgot-link {
+    display: block;
+    margin-top: 20px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-decoration: underline;
+}
+
+.forgot-link:hover {
+    color: white;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.message-success {
+    background-color: rgba(46, 213, 115, 0.2) !important;
+    color: #2ed573 !important;
+    border-color: rgba(46, 213, 115, 0.4) !important;
+}
+
+.message-error {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    color: #ff6b6b !important;
+    border-color: rgba(255, 0, 0, 0.3) !important;
+}
+
+@media (max-width: 400px) {
+    .login-card {
+        width: 90%;
+        padding: 20px;
+    }
+}
+

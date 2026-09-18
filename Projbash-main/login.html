@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Takayasu">
+    <title>Bashrio Login</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="icon" type="image/png" href="Bash_rio.jpg">
+</head>
+<body>
+
+    <header class="header-logo">
+        bashrio
+    </header>
+    
+    <main class="login-card">
+        <h1>Login</h1>
+
+        <form action="/processar-login" method="POST">
+            
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com">
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Digite sua senha">
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
+        </form>
+
+        <div class="divider">
+            <span>OU</span>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="window.location.href='cadastro.html'">
+            Criar conta
+        </button>
+
+        <a href="esqueceu_senha.html" class="forgot-link">Esqueci minha senha</a>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+</html>

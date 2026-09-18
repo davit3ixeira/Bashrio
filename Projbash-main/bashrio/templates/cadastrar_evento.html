@@ -1,0 +1,405 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Adicionar evento</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root{
+    --muted: rgba(255,255,255,0.55);
+    --glass-border: rgba(255,255,255,0.08);
+}
+
+body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background: linear-gradient(60deg,
+        rgb(0, 2, 145),
+        rgba(0, 11, 112, 0.856),
+        rgba(10, 0, 49, 0.932)
+    );
+    background-size: cover;
+    background-attachment: fixed;
+
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.card{
+    margin-top: 10px;
+    background: rgba(10, 10, 25, 0.65);
+    border-radius: 20px;
+    margin-bottom: 60px;
+    padding: 28px;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.55),
+                inset 0 1px 0 rgba(255,255,255,0.02);
+
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(14px) saturate(120%);
+}
+
+.card h1{
+    text-align: center;
+    margin: 6px 0 18px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.row{
+    display:flex;
+    gap:12px;
+    align-items:stretch;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select,
+input[type="date"],
+input[type="time"]{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: #eee;
+    padding: 10px 12px;
+    border-radius: 8px;
+    min-height: 40px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+select option {
+    color: black !important;
+}
+
+textarea{
+    resize: vertical;
+    min-height: 88px;
+    padding: 12px;
+    line-height: 1.3;
+}
+
+.field-full{ width:100%; display:flex; flex-direction:column; }
+.field-half{ flex:1; display:flex; flex-direction:column; }
+
+.select{
+    appearance:none;
+    -webkit-appearance:none;
+    position:relative;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #aaa 50%),
+        linear-gradient(135deg, #aaa 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) calc(1em + 2px),
+        calc(100% - 12px) calc(1em + 2px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat:no-repeat;
+    padding-right:34px;
+}
+
+.dropzone{
+    border-radius:10px;
+    border:1px dashed rgba(255,255,255,0.06);
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:140px;
+    background: rgba(255,255,255,0.01);
+    color:var(--muted);
+}
+
+.dropzone .preview{
+    width:100%;
+    max-width:460px;
+    max-height:220px;
+    display:block;
+    object-fit:contain;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+.dropzone .big-icon{
+    font-size:36px;
+    color: rgba(255,255,255,0.35);
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.04);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.actions{
+    display:flex;
+    gap:12px;
+    justify-content:flex-start;
+    margin-top:8px;
+}
+
+.btn{
+    padding:10px 18px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.04);
+    background:transparent;
+    color:#ddd;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn.cancel{
+    background: rgba(255,255,255,0.04);
+}
+
+.btn.publish{
+    background: #6c4df5;
+    color:#fff;
+    border:none;
+}
+.btn.publish:hover{ background:#7a5cff; }
+.btn.cancel:hover{ background:rgba(167,167,167,0.199); }
+
+.small-muted{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 140px 120px;
+    gap:12px;
+    align-items:end;
+}
+
+.drop-hint{
+    font-size:12px;
+    color:rgba(255,255,255,0.25);
+    margin-top:8px;
+}
+
+.label-inline{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.message-success {
+    background-color: rgba(46, 213, 115, 0.2) !important;
+    color: #2ed573 !important;
+    border-color: rgba(46, 213, 115, 0.4) !important;
+}
+
+.message-error {
+    background-color: rgba(255, 0, 0, 0.2) !important;
+    color: #ff6b6b !important;
+    border-color: rgba(255, 0, 0, 0.3) !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-wrap">
+
+    <div class="card" role="region" aria-label="Formulário adicionar evento">
+
+        <h1>Adicionar evento</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'success' or 'success' in message.tags %}
+                    <div class="message message-success">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'error' or 'error' in message.tags %}
+                    <div class="message message-error">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form action="{% url 'cadastrar_evento' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="field-full">
+                <label for="titulo">Título</label>
+                <input id="titulo" name="titulo" type="text" placeholder="Digite aqui o título do evento" required>
+            </div>
+
+            <div class="row">
+                <div class="field-half">
+                    <label for="city">Cidade</label>
+                    <select id="city" name="city" class="select">
+                        <option value="">Selecionar</option>
+                        <option>São Paulo</option>
+                        <option>Rio de Janeiro</option>
+                        <option>Brasília</option>
+                        <option>Salvador</option>
+                        <option>Fortaleza</option>
+                        <option>Belo Horizonte</option>
+                        <option>Manaus</option>
+                        <option>Curitiba</option>
+                        <option>Recife</option>
+                        <option>Porto Alegre</option>
+                        <option>Goiânia</option>
+                        <option>Belém</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+
+                <div class="field-half">
+                    <label for="local">Local</label>
+                    <input id="local" name="local" type="text" placeholder="Digite aqui o endereço">
+                </div>
+            </div>
+
+            <div class="field-full">
+                <label for="prices">Preço(s)</label>
+                <textarea id="prices" name="prices" placeholder="Defina aqui o preço correspondente a cada tipo de ingresso"></textarea>
+            </div>
+
+            <div class="form-grid">
+                <div>
+                    <label class="label-inline">Data</label>
+                    <input type="date" name="data">
+                </div>
+
+                <div style="margin-left: 18px;">
+                    <label class="label-inline">Hora</label>
+                    <input type="time" name="hora">
+                </div>
+
+                <div>
+                    <label class="label-inline">Duração</label>
+                    <input type="time" name="duracao">
+                </div>
+            </div>
+
+            <div class="field-full">
+                <label for="info">Informações adicionais <span class="small-muted">(campo opcional)</span></label>
+                <textarea id="info" name="info" placeholder="Descrições adicionais do evento"></textarea>
+            </div>
+
+            <div>
+                <div>
+                    <label>Capa do evento (Imagem)</label>
+
+                    <div class="dropzone" id="dz">
+                        <input type="file" id="fileInput" name="imagem" accept="image/*" style="display:none;">
+
+                        <div id="placeholderContent" style="display:flex;gap:12px;align-items:center;flex-direction:column;">
+                            <div class="big-icon"><i class="fas fa-plus"></i></div>
+                            <div class="drop-hint">Clique ou arraste uma imagem para adicionar</div>
+                        </div>  
+
+                        <img id="preview" class="preview" style="display:none;">
+                </div>
+            </div>
+
+            </div>
+
+            <div class="actions" style="margin-top:20px; margin-left:235px;">
+                <a href="{% url 'add_eventos' %}" style="text-decoration:none; color:inherit;">
+                    <button type="button" class="btn cancel">Cancelar</button>
+                </a>
+
+                <button type="submit" class="btn publish">Publicar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+const dz = document.getElementById("dz");
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+const placeholder = document.getElementById("placeholderContent");
+
+dz.addEventListener("click", function() {
+    fileInput.click();
+});
+
+fileInput.addEventListener("change", function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+    placeholder.style.display = "none";
+});
+
+dz.addEventListener("dragover", function(e) {
+    e.preventDefault();
+    dz.style.background = "rgba(255,255,255,0.05)";
+});
+
+dz.addEventListener("dragleave", function() {
+    dz.style.background = "rgba(255,255,255,0.01)";
+});
+
+dz.addEventListener("drop", function(e) {
+    e.preventDefault();
+    dz.style.background = "rgba(255,255,255,0.01)";
+
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+    placeholder.style.display = "none";
+});
+</script>
+
+</body>
+</html>

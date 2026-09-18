@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alterar sua Senha</title>
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: linear-gradient(60deg,
+            rgb(0, 2, 145),
+            rgba(0, 11, 112, 0.856),
+            rgba(10, 0, 49, 0.932)
+        );
+
+        background-size: cover;
+        color: #fff;
+    }
+
+    .logo {
+        position: absolute;
+        top: 40px;
+        font-size: 80px;
+        font-weight: 750;
+        letter-spacing: 0.5px;
+        user-select: none;
+    }
+
+    .card {
+        background: rgba(10, 10, 25, 0.65);
+        padding: 40px 50px 45px 50px;
+        border-radius: 20px;
+        width: 340px;
+        text-align: left;
+        margin-top: 40px;
+        position: relative;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 30px rgba(0,0,0,0.4);
+        border: 1px solid var(--glass-border);
+    }
+
+    .card img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .card h2 {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    label {
+        font-size: 12px;
+        color: #d6d6d6;
+        margin-bottom: 6px;
+        display: block;
+        font-weight: 400;
+    }
+
+    .card input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #3d2c78;
+        border-radius: 6px;
+        outline: none;
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .card input::placeholder {
+        color: #888;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        color: #fff;
+        background: #6c4df5;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: #7a5cff;
+    }
+
+    .link {
+        display: block;
+        margin-top: 18px;
+        font-size: 13px;
+        color: #cfcfcf;
+        text-decoration: none;
+        text-align: center;
+        transition: 0.2s;
+    }
+
+    .link:hover {
+        color: #ffffff;
+    }
+
+    .help-inside {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 12px;
+        color: #d6d6d6;
+    }
+
+    .help-inside a {
+        color: #8b6cff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .help-inside a:hover {
+        text-decoration: underline;
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="logo">bashrio</div>
+
+    <div class="card">
+        <img src="https://img.icons8.com/ios-filled/50/aaaaaa/lock.png" width="36" style="opacity:0.7;">
+
+        <h2>Alterar sua Senha</h2>
+
+        <label for="senha">Nova senha</label>
+        <input id="senha" type="password" placeholder="Digite sua nova senha">
+
+        <a class="btn" href="{% url 'login' %}" 
+        style="display:block; text-align:center; text-decoration:none; width: 317px;">Alterar</a>
+
+        <a class="link" href="{% url 'login' %}">← Voltar para login</a>
+
+        <div class="help-inside">
+            Precisa de ajuda? <a href="{% url 'home' %}#contato">Entre em contato</a>
+        </div>
+    </div>
+
+</body>
+</html>

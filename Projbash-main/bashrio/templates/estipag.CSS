@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #000; 
+    color: #fff; 
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center; 
+    z-index: 1000;
+    background: transparent;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.menu-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity 0.3s;
+}
+
+.menu-links a:hover {
+    opacity: 0.7;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    background: linear-gradient(20deg, #0059ff, rgb(0, 0, 0), rgb(68, 30, 255));
+}
+
+.titulo-zao {
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: -2px; 
+    margin-bottom: 40px;
+}
+
+
+
+.btn-outline {
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    padding: 12px 40px;
+    border-radius: 50px; 
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #fff;
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+}
+
+section {
+    padding: 80px 20px;
+}
+
+.secao-grid {
+    background-color: #111; 
+}
+
+.secao-grid h2, .secao-texto h2, .footer-contato h2 {
+    margin-bottom: 40px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #1a1a1a; 
+    padding: 20px;
+    border-radius: 15px;
+    width: 220px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+}
+
+.card h3 {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.card p {
+    color: #aaa; 
+    font-size: 0.9rem;
+}
+
+.quadradinho {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.cor-1 { background-image:url('Pedro_Muc.jpg');
+background-size: cover;      
+background-position: center; 
+background-repeat: no-repeat
+}
+.cor-2 { background-image:url('Davi.jpg');
+background-size: cover;      
+background-position: center; 
+background-repeat: no-repeat; }
+.cor-3 {background-image:url('Takayasu.jpg');
+background-size: cover;      
+background-position: center; 
+background-repeat: no-repeat; }
+.cor-4 { background-image:url('Gfelix.jpg');
+background-size: cover;      
+background-position: center; 
+background-repeat: no-repeat }
+
+.secao-texto {
+    background-color: #000;
+    text-align: center;
+}
+
+.footer-contato {
+    background-color: #0a0a0a;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+@media (max-width: 768px) {
+    .titulo-zao {
+        font-size: 3.5rem;
+    }
+    header {
+        padding: 20px;
+    }
+    .menu-links {
+        display: none; 
+    }
+}

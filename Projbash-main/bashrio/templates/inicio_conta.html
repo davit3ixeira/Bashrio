@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conta</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+
+    background: linear-gradient(60deg,
+        rgb(0, 2, 145),
+        rgba(0, 11, 112, 0.856),
+        rgba(10, 0, 49, 0.932)
+    );
+}
+
+.sidebar {
+    width: 260px;
+    background: rgba(10, 10, 25, 0.55);
+    padding: 30px 25px;
+    color: #fff;
+    backdrop-filter: blur(18px);
+    border-right: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.menu-item {
+    padding: 12px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #dcdcdc;
+}
+
+.menu-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.menu-item.active {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    font-weight: 600;
+}
+
+.logout-btn {
+    padding: 12px;
+    background: rgb(0, 2, 145);
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: rgb(94, 94, 136);
+}
+
+.main {
+    flex: 1;
+    color: #fff;
+    padding: 40px 60px;
+    overflow-y: auto;
+}
+
+.top-btn {
+    background: rgb(0, 2, 145);
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 600;
+    float: right;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.top-btn:hover {
+    background: rgb(94, 94, 136);
+}
+
+.profile-container {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.profile-icon {
+    width: 120px;
+    height: 120px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+    font-size: 50px;
+    color: #bbb;
+}
+
+.profile-title {
+    margin-top: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.profile-subtitle {
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+.info-box {
+    background: rgba(10,10,25,0.55);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px;
+    backdrop-filter: blur(18px);
+    width: 85%;
+    margin: 40px auto;
+}
+
+.info-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.info-row {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,254,0.08);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.arrow-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+}
+
+.arrow-btn i {
+    opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div>
+        <div class="sidebar-title">Conta</div>
+        <div class="menu-item active">Início</div>
+        <div class="menu-item">Meus eventos</div>
+        <div class="menu-item">Métodos de pagamento</div>
+    </div>
+
+    <a href="{% url 'logout' %}" style="text-decoration:none; color:inherit;">
+        <div class="logout-btn">
+            Encerrar sessão &nbsp; <i class="fas fa-sign-out-alt"></i>
+        </div>
+    </a>
+</div>
+
+<div class="main">
+    <div class="top-btn">
+        <a href="{% url 'home' %}" style="text-decoration:none; color:inherit;">
+            Menu
+        </a>
+        
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-icon"><i class="fas fa-user"></i></div>
+        <div class="profile-title">Bem vindo {{ perfil.nome }}</div>
+        <div class="profile-subtitle">Gerencie suas informações, privacidade e segurança</div>
+    </div>
+
+    <div class="info-box">
+        <div class="info-title">Informações básicas</div>
+
+        <div class="info-row">Foto de perfil 
+            <span>Alterar 
+                <button class="arrow-btn"><i class="fas fa-chevron-right"></i></button>
+            </span>
+        </div>
+
+        <div class="info-row">Nome <span>{{ perfil.nome }}</span></div>
+        <div class="info-row">Data de nascimento <span>{% if perfil.data_nascimento %}{{ perfil.data_nascimento|date:"d/m/Y" }}{% else %}Não informado{% endif %}</span></div>
+        <div class="info-row">CPF <span>{% if perfil.cpf_formatado %}{{ perfil.cpf_formatado }}{% else %}Não informado{% endif %}</span></div>
+    </div>
+
+    <div class="info-box">
+        <div class="info-title">Informações de contato</div>
+
+        <div class="info-row">Email <span>{{ perfil.email }}</span></div>
+
+        <div class="info-row">Senha 
+            <span>Alterar 
+                <button class="arrow-btn"><i class="fas fa-chevron-right"></i></button>
+            </span>
+        </div>
+
+        <div class="info-row">Telefone <span>{% if perfil.telefone %}{{ perfil.telefone }}{% else %}Não informado{% endif %}</span></div>
+    </div>
+
+</div>
+
+</body>
+</html>
